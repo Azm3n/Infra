@@ -1,19 +1,17 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { LoginPage, RegisterPage } from "./components";
 
 const App = () => {
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-
-  return <div className="App">Hejo</div>;
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </Router>
+    </>
+  );
 };
 
 export default App;
