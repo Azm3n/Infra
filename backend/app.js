@@ -1,21 +1,29 @@
-const express = require("express");
+import express, { json, urlencoded } from "express";
+import morgan from "morgan";
 
+import connection from "./db-connection.js";
+
+const PORT = process.env.PORT || 4000;
 const app = express();
-const PORT = 4000;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+app.use(morgan("dev"));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => res.send("Hello World!"));
 
-app.get("/api", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/users", async (req, res) => {
+//   const users = await select().from("users");
+//   res.json(users);
+// });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+// app.post("/users", async (req, res) => {
+//   const user = await db("users").insert({ name: req.body.name }).returning("*");
+//   res.json(user);
+// });
+
+app.listen(PORT, () => console.log(`Server up at http://localhost:${PORT}`));
+
+process.on("exit", async function () {
+  await connection.close();
 });
