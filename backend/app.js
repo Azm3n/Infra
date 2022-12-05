@@ -1,12 +1,12 @@
 import express, { json, urlencoded } from "express";
 import morgan from "morgan";
+import cors from "cors";
 
 import cors from "cors";
 
 import connection from "./db-connection.js";
 
 const PORT = 4000;
-
 const app = express();
 
 app.use(morgan("dev"));
@@ -14,9 +14,9 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors());
 
-
-// app.get("/", (req, res) => res.send("Hello World!"));
-
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.post("/login", async (req, res) => {
   const { nickname, password } = req.body;
