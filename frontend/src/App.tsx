@@ -1,36 +1,26 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { MainPage, LoginOrRegisterPage } from "./components";
+import {
+  LoginPage,
+  PasswordRecoveryPage,
+  RegisterPage,
+  HomePage,
+  MainPage,
+} from "./components";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/password-recovery' element={<PasswordRecoveryPage />} />
+          <Route path='/register' element={<RegisterPage />} />
           <Route
-            path="/login"
-            element={
-              <LoginOrRegisterPage
-                endpoint="login"
-                redirectEndpoint="register"
-                submitButtonContent="Login"
-                question="Don't you have account?"
-                redirectContent="Sign up"
-              />
-            }
+            path='/home'
+            element={<ProtectedRoute component={<HomePage />} />}
           />
-          <Route
-            path="/register"
-            element={
-              <LoginOrRegisterPage
-                endpoint="register"
-                redirectEndpoint="login"
-                submitButtonContent="Sign up"
-                question="Already have an account."
-                redirectContent="Login"
-              />
-            }
-          />
-          <Route path="/" element={<MainPage />} />
+          <Route path='/' element={<MainPage />} />
         </Routes>
       </Router>
     </>

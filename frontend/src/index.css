@@ -45,6 +45,7 @@ body,
   flex-direction: row;
   width: 30%;
   justify-content: space-around;
+  margin-top: 15px;
 }
 
 .questionAboutAccount {
@@ -54,4 +55,20 @@ body,
 .redirect {
   cursor: pointer;
   font-weight: 900;
+}
+
+.buttonsContainer {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
